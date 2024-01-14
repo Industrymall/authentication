@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ApiController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +20,7 @@ Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'verified'])->group(function () {
     // Your routes here
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 });
+Route::get('/', [ApiController::class,'fetchData']);

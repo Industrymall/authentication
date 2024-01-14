@@ -9,11 +9,15 @@ class ApiController extends Controller
     //
     public function fetchData()
     {
-        $client = new Client();
+        $client = new Client([
+            'verify' => false, // Disable SSL verification
+        ]);
+    
         $response = $client->get('https://jsonplaceholder.typicode.com/posts');
         $data = json_decode($response->getBody(), true);
-
-        return view('dashboard', ['apiData' => $data]);
+    
+        return view('welcome', compact('data'));
     }
+    
 
 }
